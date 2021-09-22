@@ -1,0 +1,16 @@
+FROM python:3.9.7
+
+RUN pip install --upgrade pip
+
+# copy the backend source code
+COPY ./backend /src
+
+WORKDIR /src
+
+# install packages listed in requirements
+RUN pip install -r /src/requirements.txt
+
+# expose the port 8080
+EXPOSE 8080
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
