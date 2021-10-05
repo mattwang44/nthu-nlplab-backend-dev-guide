@@ -16,8 +16,17 @@ jobs:
 
       - name: unit test
         run: |
-          cd basic-dockerized-backend-frontend && \ 
-          docker-compose run --rm backend sh -c "\ 
-            pip install -r /src/requirements/dev.txt && \ 
-            pytest .\
-          "
+          cd basic-dockerized-backend-frontend
+          docker-compose run --rm backend sh -c " \
+            pip install -r /src/requirements/dev.txt && pytest ."
+
+  frontend_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: unit test
+        run: |
+          cd basic-dockerized-backend-frontend
+          docker-compose run --rm frontend sh -c " \ 
+            npm test -- --watchAll=false"

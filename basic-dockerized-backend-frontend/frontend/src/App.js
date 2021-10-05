@@ -40,8 +40,8 @@ function App() {
   }
 
   return (
-    <div style={{ 'margin-left': '10px' }}>
-      <p style={{'font-size':'30px'}}>{counter.count}</p>
+    <div style={{ 'marginLeft': '10px' }}>
+      <p style={{'fontSize':'30px'}}>{counter.count}</p>
       <button onClick={handleClick(1)}>+1</button>
       <button onClick={handleClick(-1)}>-1</button>
     </div>
