@@ -1,0 +1,23 @@
+name: CI workflows
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  backend_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: unit test
+        run: |
+          cd basic-dockerized-backend-frontend && \ 
+          docker-compose run --rm backend sh -c "\ 
+            pip install -r /src/requirements/dev.txt && \ 
+            pytest .\
+          "
