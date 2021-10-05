@@ -25,7 +25,7 @@ def get_count():
     if not count:
         redis_client.set("count", 0)
         count = 0
-    return {"count": count}
+    return {"count": int(count)}
 
 @app.post("/counter")
 async def increment_by(request: Request):
