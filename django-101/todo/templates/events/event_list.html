@@ -1,0 +1,31 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <h2>TODO</h2>
+  {% for e in event_list|dictsort:"priority" %}
+  <!-- show only items that are not done -->
+  {% if e.status is not 2 %}
+  <div>
+    <h3>name: {{ e.name }} ({{ e.priority }})</h2>
+    <p>status: {{ e.get_status_display }}</p>
+    <p>description: {{ e.description }}</p>
+    <p>due: {{ e.datetime }}</p>
+  </div>
+  {% endif %} {% endfor %}
+
+  <h2>DONE</h2>
+  <!-- show only items that are done -->
+  {% for e in event_list|dictsort:"datetime" %}
+  {% if e.status is 2 %}
+  <div>
+    <h3>name: {{ e.name }}</h2>
+    <p>description: {{ e.description }}</p>
+  </div>
+  {% endif %} 
+  {% endfor %}
+
+</body>
